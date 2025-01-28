@@ -18,13 +18,19 @@ RSpec.describe '/books', type: :request do
   # adjust the attributes here as well.
   let(:valid_attributes) do
     {
-      title: 'The Great Gatsby' # Valid because title is present
+      title: 'The Great Gatsby', # Valid because title is present
+      author: 'F. Scott Fitzgerald', # Valid because author is present
+      price: 10.0, # Valid because price is present
+      published_date: Date.new(2022, 1, 1) # Valid because published_date is present
     }
   end
 
   let(:invalid_attributes) do
     {
-      title: nil # Invalid because title should be present
+      title: nil, # Invalid because title is not present
+      author: nil, # Invalid because author is not present
+      price: nil, # Invalid because price is not present
+      published_date: nil # Invalid because published_date is not present
     }
   end
 
@@ -91,7 +97,10 @@ RSpec.describe '/books', type: :request do
     context 'with valid parameters' do
       let(:new_attributes) do
         {
-          title: 'A New Title' # Valid because title is present
+          title: 'A New Title Wahoo', # Valid because title is present (but not updated)
+          author: 'Another Author 2', # Valid because author is present (but not updated)
+          price: 100.0, # Valid bec    ause price is present (but not updated)
+          published_date: '2024-01-01' # Valid because published_date is present (but not updated)
         }
       end
 
@@ -99,7 +108,10 @@ RSpec.describe '/books', type: :request do
         book = Book.create! valid_attributes
         patch book_url(book), params: { book: new_attributes }
         book.reload
-        expect(book.title).to eq('A New Title')
+        expect(book.title).to eq('A New Title Wahoo')
+        expect(book.author).to eq('Another Author 2')
+        expect(book.price).to eq(100.0)
+        expect(book.published_date).to eq(Date.new(2024, 1, 1))
       end
 
       it 'redirects to the book' do
