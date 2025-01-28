@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :books
   resources :books do member do
     get "delete" # Creates '/your_models/:id/delete' (delete_your_model_path)
     end
