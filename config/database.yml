@@ -19,7 +19,7 @@ default: &default
   # port: 38787
   # encoding: unicode
   # username: shlok
-  url: postgres://shlok:shlok@kiwi:38787
+  url: postgres://u7bvbpto5alv3s:p1d01d27a71d92c73e38bf22ed05a675431889920a9b181aedb67c6e9bc0d41be@c3nv2ev86aje4j.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d1573uomgqud72 
   # password: shlok
   pool: 5
 
