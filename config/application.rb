@@ -1,6 +1,6 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -23,5 +23,19 @@ module Myapp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Configure separate databases for queue, cache, and cable
+    config.active_record.database_selector = { delay: 2.seconds }
+    config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
+    config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+    config.active_job.queue_adapter = :solid_queue
+    config.solid_queue.database_url = ENV['QUEUE_DATABASE_URL']
+
+    config.cache_store = :solid_cache_store
+    config.solid_cache.database_url = ENV['CACHE_DATABASE_URL']
+
+    config.action_cable.use_solid_cable = true
+    config.solid_cable.database_url = ENV['CABLE_DATABASE_URL']
   end
 end

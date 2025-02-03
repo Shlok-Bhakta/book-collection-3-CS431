@@ -1,2 +1,2 @@
-release: yarn install && bundle exec rails db:migrate && bundle exec rails db:migrate:with_data && bundle exec rails db:migrate:queue && bundle exec rails db:migrate:cache && bundle exec rails db:migrate:cable && bundle exec rails assets:precompile
+release: yarn install && bundle exec rails db:migrate && bundle exec rails db:migrate:queue && bundle exec rails db:migrate:cache && bundle exec rails db:migrate:cable && bundle exec rails assets:precompile
 web: bundle exec rails server -p $PORT
