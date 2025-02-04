@@ -33,3 +33,12 @@ test:
 production:
   <<: *default
   database: prod11
+cable:
+<<: *production
+database: storage/production_cable
+cache:
+<<: *production
+database: storage/production_cache
+queue:
+<<: *production
+database: storage/production_queue
