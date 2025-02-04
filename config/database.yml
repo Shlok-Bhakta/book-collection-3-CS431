@@ -18,6 +18,7 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  url: postgres://u7bvbpto5alv3s:p1d01d27a71d92c73e38bf22ed05a675431889920a9b181aedb67c6e9bc0d41be@c3nv2ev86aje4j.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d1573uomgqud72
 
 
 development:
@@ -82,8 +83,8 @@ production:
   primary: &primary_production
     <<: *default
     database: myapp_production
-    username: myapp
-    password: <%= ENV["MYAPP_DATABASE_PASSWORD"] %>
+    # username: myapp
+    # password: <%= ENV["MYAPP_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
     database: myapp_production_cache
